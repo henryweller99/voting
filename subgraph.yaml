@@ -17,12 +17,19 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - Votes
+        - Cast
       abis:
         - name: Voting
           file: ./abis/Votes.json
       eventHandlers:
-        - event: NewGravatar(uint256,address,string,string)
-          handler: handleNewGravatar
-        - event: UpdatedGravatar(uint256,address,string,string)
-          handler: handleUpdatedGravatar
+        - event: StartVote(indexed uint256,indexed address,string,uint256,uint256,uint256,uint256)
+          handler: handleStartVote
+        - event: CastVote(indexed uint256,indexed address,bool,uint256)
+          handler: handleCastVote
+        - event: ExecuteVote(indexed uint256)
+          handler: handleExecuteVote
+        - event: MinimumBalanceSet(uint256)
+          handler: handleMinimumBalanceSet
+        - event: MinimumTimeSet(uint256)
+          handler: handleMinimumTimeSet
       file: ./src/Voting.ts
