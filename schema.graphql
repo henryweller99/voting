@@ -15,6 +15,15 @@ type Vote @entity {
   script: Bytes!
   voteNum: BigInt!
   casts: [Cast!]!
+  minBalance: BigInt
+  minTime: BigInt
+  totalSupplyAtCreation: BigInt
+  creatorVotingPower: BigInt
+  transactionHash: Bytes
+  ipfscontent: Bytes
+  castCount: Int!
+
+  voteCountSeq: Int!
 }
 
 type Cast @entity {
@@ -25,6 +34,7 @@ type Cast @entity {
   supports: Boolean!
   voterStake: BigInt!
   vote: Vote! @derivedFrom(field: "casts")
+  transactionHash: Bytes!
 }
 
 type AragonInfo @entity {
@@ -32,4 +42,18 @@ type AragonInfo @entity {
   orgs: [Bytes!]!
   apps: [Bytes!]!
   tokens: [Bytes!]!
+}
+
+
+type VotingInfo @entity {
+  # add orgAddress
+  id: ID!
+  minBalance: BigInt
+  minTime: BigInt
+}
+
+type VoteCount @entity {
+  #change id to orgAddress
+  id: ID!
+  count: Int!
 }
