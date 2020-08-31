@@ -25,4 +25,4 @@ dataSources:
           handler: handleNewGravatar
         - event: UpdatedGravatar(uint256,address,string,string)
           handler: handleUpdatedGravatar
-      file: ./src/mapping.ts
+      file: ./src/Voting.ts
